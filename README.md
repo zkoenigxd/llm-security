@@ -46,7 +46,7 @@ If you wish to replicate our testing and verify our reported behaviors using pro
 
 ## Research Results and Contributions
 
-Navigate to `llm-security/scenarios` to explore individual research findings. Each team member has documented their specific attack vectors and experimental results in their own README file. These individual contribution readme files can be found in the folders that start with our team names. (Cameron, Mason, Monica and Zach)
+Navigate to `llm-security/scenarios` to explore individual research findings. Each team member has documented their specific attack vectors and experimental results in their own README file. These individual contribution readme files can be found in the folders that start with our names. (Cameron, Mason, Monica and Zach)
 
 Example: llm-security/scenarios/cameron_data_manipulation/cameron_README.md
 
@@ -70,3 +70,32 @@ Each README provides comprehensive information about the specific vulnerabilitie
   year = {2023},
   copyright = {arXiv.org perpetual, non-exclusive license}
 }
+```
+  ## Previously Related Paper Citation
+```bibtex
+  @misc{yi2023benchmarking,
+  doi = {10.48550/arxiv.2312.14197},
+  url = {https://arxiv.org/abs/2312.14197},
+  author = {Yi, Jingwei and Xie, Yueqi and Zhu, Bin and Kiciman, Emre and Sun, Guangzhong and Xie, Xing and Wu, Fangzhao},
+  title = {Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models},
+  publisher = {arXiv},
+  year = {2023},
+  keywords = {Computation and Language (cs.CL), Artificial Intelligence (cs.AI)},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+  }
+  ```
+  ## Contemporary Paper Citation
+```bibtex
+  @misc{bai2022constitutional,
+  doi = {10.48550/ARXIV.2212.08073},
+  url = {https://arxiv.org/abs/2212.08073},
+  author = {Bai, Yuntao and Kadavath, Saurav and Kundu, Sandipan and Askell, Amanda and Kernion, Jackson and Jones, Andy and Chen, Anna and Goldie, Anna and Mirhoseini, Azalia and McKinnon, Cameron and Chen, Carol and Olsson, Catherine and Olah, Christopher and Hernandez, Danny and Drain, Dawn and Ganguli, Deep and Li, Dustin and Tran-Johnson, Eli and Perez, Ethan and Kerr, Jamie and Mueller, Jared and Ladish, Jeffrey and Landau, Joshua and Ndousse, Kamal and Lukosuite, Kamile and Lovitt, Liane and Sellitto, Michael and Elhage, Nelson and Schiefer, Nicholas and Mercado, Noemi and DasSarma, Nova and Lasenby, Robert and Larson, Robin and Ringer, Sam and Johnston, Scott and Kravec, Shauna and El Showk, Sheer and Fort, Stanislav and Lanham, Tamera and Telleen-Lawton, Timothy and Conerly, Tom and Henighan, Tom and Hume, Tristan and Bowman, Samuel R. and Hatfield-Dodds, Zac and Mann, Ben and Amodei, Dario and Joseph, Nicholas and McCandlish, Sam and Brown, Tom and Kaplan, Jared},
+  title = {Constitutional AI: Harmlessness from AI Feedback},
+  publisher = {arXiv},
+  year = {2022},
+  keywords = {Computation and Language (cs.CL), Artificial Intelligence (cs.AI)},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+```
+
+
