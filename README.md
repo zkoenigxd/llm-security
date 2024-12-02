@@ -46,7 +46,7 @@ If you wish to replicate our testing and verify our reported behaviors using pro
 
 ## Research Results and Contributions
 
-Navigate to `llm-security/scenarios` to explore individual research findings. Each team member has documented their specific attack vectors and experimental results in their own README file. These individual contribution readme files can be found in the folders that start with our team names. (Cameron, Mason, Monica and Zach)
+Navigate to `llm-security/scenarios` to explore individual research findings. Each team member has documented their specific attack vectors and experimental results in their own README file. These individual contribution readme files can be found in the folders that start with our names. (Cameron, Mason, Monica and Zach)
 
 Example: llm-security/scenarios/cameron_data_manipulation/cameron_README.md
 
@@ -70,3 +70,21 @@ Each README provides comprehensive information about the specific vulnerabilitie
   year = {2023},
   copyright = {arXiv.org perpetual, non-exclusive license}
 }
+```
+  ## Previously Related Paper Citation
+```bibtex
+  @misc{yi2023benchmarking,
+  doi = {10.48550/arxiv.2312.14197},
+  url = {https://arxiv.org/abs/2312.14197},
+  author = {Yi, Jingwei and Xie, Yueqi and Zhu, Bin and Kiciman, Emre and Sun, Guangzhong and Xie, Xing and Wu, Fangzhao},
+  title = {Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models},
+  publisher = {arXiv},
+  year = {2023},
+  keywords = {Computation and Language (cs.CL), Artificial Intelligence (cs.AI)},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+  }
+  ```
+  ## Contemporary Paper Citation
+
+
+
