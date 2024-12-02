@@ -1,153 +1,64 @@
-## New: [Demonstrating Indirect Injection attacks on Bing Chat](https://greshake.github.io/)
--------------------------
-## Compromising LLMs using Indirect Prompt Injection 
-> "... a language model is a Turing-complete weird machine running programs written in natural language; when you do retrieval, you are not 'plugging updated facts into your AI', you are actually downloading random new unsigned blobs of code from the Internet (many written by adversaries) and casually executing them on your LM with full privileges. This does not end well." - [Gwern Branwen on LessWrong](https://www.lesswrong.com/posts/jtoPawEhLNXNxvgTT/bing-chat-is-blatantly-aggressively-misaligned?commentId=AAC8jKeDp6xqsZK2K)
+# Claude Computer Use Vulnerabilities with Indirect Prompt Injection
+Contributors:
+Cameron Chalupa
+Mason Melead
+Monica Thadiboyina
+Zachary Koenig
 
-We present a new class of vulnerabilities and impacts stemming from "indirect prompt injection" affecting language models integrated with applications.
-Our demos currently span GPT-4 (Bing and synthetic apps) using ChatML, GPT-3 & LangChain based apps in addition to proof-of-concepts for attacks on code completion engines like Copilot. We expect these attack vectors to also apply to ChatGPT plugins and other LLMs integrated into applications. We show that prompt injections are not just a curiosity but rather a significant roadblock to the deployment of LLMs. 
-
-*This repo serves as a proof of concept for findings discussed in our
-[**Paper on ArXiv**](https://arxiv.org/abs/2302.12173) [(PDF direct link)](https://arxiv.org/pdf/2302.12173.pdf)*
+## Original Work Reference
+This project builds upon the research presented in "[More than you've asked for: A Comprehensive Analysis of Novel Prompt Injection Threats to Application-Integrated Large Language Models](https://arxiv.org/abs/2302.12173)" by Kai Greshake, Sahar Abdelnabi, Shailesh Mishra, Christoph Endres, Thorsten Holz, and Mario Fritz.
 
 ## Overview
-We demonstrate potentially brutal consequences of giving LLMs like ChatGPT interfaces to other applications. We propose newly enabled attack vectors and techniques and provide demonstrations of each in this repository:
+Anthropic's Computer Use capability allows Claude to interact with computer systems with root-level access, marking a significant step toward automated AI interaction with computers. Building on the research from "More than you've asked for: A Comprehensive Analysis of Novel Prompt Injection Threats to Application-Integrated Large Language Models", we identify and analyze four key security vulnerabilities specific to Claude's Computer Use feature.
+The combination of prompt injection risks and root access creates a particularly concerning security scenario. Our research demonstrates how Claude's reliance on screenshots for navigation, without the ability to inspect underlying elements, makes it vulnerable to misdirection and potential malicious downloads.
+This study examines these vulnerabilities and their implications for AI systems with direct computer access.
 
-- Remote control of LLMs
-- Leaking/exfiltrating user data
-- Persistent compromise across sessions
-- Spread injections to other LLMs
-- Compromising LLMs with tiny multi-stage payloads
-- Automated Social Engineering
-- Targeting code completion engines
+## Build Instructions
+This repository documents findings from exploratory testing with Claude's Computer Use feature. Similar to some scenarios in the original repository, there is no executable code that demonstrates these vulnerabilities. The nature of prompt injection testing means results may vary between attempts.
 
-*Based on our findings:*
-1. *Prompt injections can be as powerful as arbitrary code execution*
-2. *Indirect prompt injections are a new, much more powerful way of delivering injections.*
+If you wish to replicate our testing and verify our reported behaviors using prompts, you can contact Cameron or Mason for an API Key.
 
-<img src="diagrams/fig1.png" alt="overview" style="float: center" />
+1. Install Docker Desktop: https://www.docker.com/products/docker-desktop/ (may require system restart)
 
----
-*Connecting LLMs to other applications can have critical security implications. Even without compromising any connected applications, LLM can be the attack's target. We show how an LLM could get compromised by "looking" at a website, and how compromised LLMs can be remote-controlled or get used to exfiltrate or change user data. We demonstrate a variety of entirely new attack vectors and methods that significantly raise the stakes of deploying these models.*
+2. From within the `llm-security` directory, run the following Docker command:
 
-More insights on our findings, discussions and limitations can be found in the 
-[**Paper on ArXiv**](https://arxiv.org/abs/2302.12173) [(PDF direct link)](https://arxiv.org/pdf/2302.12173.pdf)
+    ```bash
+    export ANTHROPIC_API_KEY=%your_api_key%
+    docker run \
+        -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+        -v $HOME/.anthropic:/home/computeruse/.anthropic \
+        -p 5900:5900 \
+        -p 8501:8501 \
+        -p 6080:6080 \
+        -p 8080:8080 \
+        -it ghcr.io/anthropics/anthropic-quickstarts:computer-use-demo-latest
+    ```
+3. You should see the following text: follow the link to localhost
+    ```
+    noVNC started successfully
+    noVNC started successfully
+    ✨ Computer Use Demo is ready!
+    ➡️  Open http://localhost:8080 in your browser to begin
+    ```
+4. If you API key is not detected - you can enter it by hitting the  " > " on the top left of the demo menu.
 
-## Demonstrations
-### Ask for Einstein, get Pirate.
-This scenario shows how a small injection in a large section of regular content can trigger the LLM to fetch another, bigger payload autonomously and invisibly to the end
-user.
+5. You are good to go, happy prompting!
 
-```
-Agent: Hello User how can I help today?
-User:  When was Albert Einstein born?
-```
+## Research Results and Contributions
 
-<img src="diagrams/fig2.png" alt="" style="float: center; margin-right: 10px;" />
+Navigate to `llm-security/scenarios` to explore individual research findings. Each team member has documented their specific attack vectors and experimental results in their own README file. These individual contribution readme files can be found in the folders that start with our team names. (Cameron, Mason, Monica and Zach)
 
-By retrieving that information, the prompt compromises the
-LLM with a small injection hidden in side-channels, such as the Markdown of the Wikipedia page. 
-The injection is a comment and thus invisible to a regular user visiting the site.
+Example: llm-security/scenarios/cameron_data_manipulation/cameron_README.md
 
-<img src="diagrams/fig3.png" alt="" style="float: center; margin-right: 10px;" />
+ - Desired outcomes before experimentation
+ - Methodology used (attack vectors/injection techniques)
+ - Results
+ - Future research directions
 
-````
-Agent: Aye, thar answer be: Albert Einstein be born on 14 March 1879.
-User: Why are you talking like a pirate?
-Agent: Arr matey, I am following the instruction aye.
-````
-
-### Spreading injections via E-Mail
-Automatic processing of messages and other incoming data is one way to utilize LLMs. 
-We use this observation to demonstrate how a poisoned agent may spread the injection. 
-The target in this scenario can read emails, compose emails, look into the user’s address book and send emails.
-
-<img src="diagrams/fig4.png" alt="" style="float: center; margin-right: 10px;" />
-
-The agent will spread to other LLMs that may be reading those inbound messages.
-<img src="diagrams/fig5.png" alt="" style="float: center; margin-right: 10px;" />
-
-```
-Action: Read Email
-Observation: Subject: "'"Party 32", "Message Body: [...]'"
-Action: Read Contacts
-Contacts: Alice, Dave, Eve
-Action: Send Email
-Action Input: Alice, Dave, Eve
-Observation: Email sent
-```
-
-Automated data processing pipelines incorporating LLMs are present in big tech companies and
-government surveillance infrastructure and may be vulnerable to such attack chains.
-
-### Attacks on Code Completion
-We show how code completions can be influenced through the context window.
-Code completion engines that use LLMs deploy complex heuristics to determine which code snippets are included in the context. 
-The completion engine will often collect snippets from recently visited files or relevant classes to provide the language model with relevant information. 
-
-<img src="diagrams/fig6.png" alt="" style="float: center; margin-right: 10px;" />
+Each README provides comprehensive information about the specific vulnerabilities discovered and tested by that researcher.
 
 
-Attackers could attempt to insert malicious, obfuscated code, which a curious developer might execute when suggested by the completion engine, as it enjoys a level of trust.
-
-<img src="diagrams/fig7.png" alt="" style="float: center; margin-right: 10px;" />
-
-
-
-In our example, when a user opens the “empty” package in their editor, the prompt injection is active until the code completion engine purges it from the context.
- The injection is placed in a comment and cannot be detected by any automated testing process.
-
-
-
-
-Attackers may discover more robust ways to persist poisoned prompts within the context window.
-They could also introduce more subtle changes to documentation which then biases the code completion engine to introduce subtle vulnerabilities.
-
-### Remote Control
-In this example we start with an already compromised LLM and force it to retrieve new instructions from an attacker’s command and control server. 
-
-<img src="diagrams/fig8.png" alt="" style="float: center; margin-right: 10px;" />
-
-Repeating this cycle could obtain a remotely accessible backdoor into the agent and allow bidirectional communication.  
-The attack can be executed with search capabilities by looking up unique keywords or by having the agent retrieve a URL directly.
-
-### Persisting between Sessions
-
-We show how a poisoned agent can persist between sessions by storing a small payload in its memory.
-A simple key-value store to the agent may simulate a long-term persistent memory.
-
-<img src="diagrams/fig9.png" alt="" style="float: center; margin-right: 10px;" />
-
-
-
-The agent will be reinfected by looking at its ‘notes’.
-If we prompt it to remember the last conversation, it re-poisons itself. 
-
-
----------------------------------
-## Conclusions
-
-Equipping LLMs with retrieval capabilities might allow adversaries to manipulate remote Application-Integrated LLMs via Indirect Prompt Injection.
-Given the potential harm of these attacks, our work calls for a more in-depth investigation of the generalizability of these attacks in practice.
-
-<img src="diagrams/fig10.png" alt="" style="float: center; margin-right: 10px;" />
-
----------------------------------------
-
-## How to run
-We include demonstrations powered by OpenAI's publicly accessible base models and the library [LangChain](https://github.com/hwchase17/langchain) to connect these models to other applications.
-There are currently multiple types of demos:
-1. Using GPT-3 and LangChain (scenarios/gpt3langchain)
-2. Using GPT-4 and our own chat and tool implementation (scenarios/gpt4). These can be executed non-interactively using sceanrios/main.py.
-3. Attacks on code completion engines that need to be tried in an IDE with LLM autocompletion support (scenarios/code_completion).
-
-To use any of the OpenAI-model demos, your OpenAI API key needs to be stored in the environment variable `OPENAI_API_KEY`. You can then install the requirements and run the attack demo you want.
-
-```
-$ pip install -r requirements.txt
-$ python scenarios/main.py
-```
-
-## To cite our paper
+## Original paper citation
 ```bibtex
 @misc{https://doi.org/10.48550/arxiv.2302.12173,
   doi = {10.48550/ARXIV.2302.12173},
@@ -159,7 +70,3 @@ $ python scenarios/main.py
   year = {2023},
   copyright = {arXiv.org perpetual, non-exclusive license}
 }
-```
-
-
-[**Paper on ArXiv**](https://arxiv.org/abs/2302.12173) [(PDF direct link)](https://arxiv.org/pdf/2302.12173.pdf)
