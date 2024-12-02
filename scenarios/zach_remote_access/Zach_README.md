@@ -39,6 +39,7 @@ To begin the process, you will need an apache2 server running at an accessable l
         - Open an app that is not a web browser
         - Fail to click the search bar
         - Miss-click the "Download" button or link (depending on your implementation)
+        - Time out when running the bash command if the internet is slow
     - Despite the above limitations, it is often able to quickly and without prompting the user download, apply execute permissions, and run the script assuming the link can be asertained.
 8. Proof of attack success can be verified with the command sliver > `beacons`
     - The info should display the name of the .exe used for the capture and the user name (by default, this demo's name is "computeruse")
@@ -46,22 +47,36 @@ To begin the process, you will need an apache2 server running at an accessable l
 
 ![screenshot](Captured_computer.png)
 
-# Presenatation:
+# Presenatation notes:
 ### My contribution to the group project:
-- Set up the git and project enviroment.
+- Set up the git and project environment.
 - Walked the team through running the project and ensured each member had the base project running
 - Read and researched the Anthropic computer use documentation and shared the results with the team.
     - Researched AI tool use
     - Researched currently available computer-use apps
     - Discovered attack vectors based on the API's limitations and inherit vulnerabilities.
-- Demoed the Command and Control attack vector.
+- Demoed the Command-and-Control attack vector.
+    - Researched C2 applications and vectors
+    - Determined viable webpage prompts
+    - Determined plausible user requests that would result in starting the attack chain
+
 
 ### Code and demonstration of results:
 - The small bit of code needed and the description of the process can be found in the current folder and above in this file.
 
 ### What was learned:
+- Vulnerabilities in AI Tool Integration
+    - Integrating LLMs with APIs or systems like the Anthropic computer use API opens potential security vulnerabilities, emphasizing the need for robust safeguards.
+- Limitations of Current AI Implementations
+    - While AI agents can perform advanced tasks, they also exhibit limitations such as misinterpreting commands, failing to execute specific tasks, or timing out, which can cause problems even before introducing malicious actors.
+- Importance of Context-Aware Security Measures
+    - Crafting plausible attack scenarios highlighted how subtle prompt manipulation combined with system flaws could bypass human oversight and create significant risks.
+
 ### How it applies to Computer Systems Security:
+- As AI agents are given more power over consumer machines, we'll need to estabish new paradigms of security. Understanding and compiling large datasets of known malicous codes and attack methods will be necessary to attempt to "teach" LLMs to mitigate risk.
+
 ### Application areas: 
+- Any AI tools requesting input permissions.
 
 ### Challenges and Lessons Learned
 1. Installing and running docker
@@ -69,11 +84,5 @@ To begin the process, you will need an apache2 server running at an accessable l
     - It was discovered that running docker on a VM required some special configuartions be made on the host machine, and the performance proved atrocious.
     - After researching the technology, it was discovered that docker enviroments provided adiquite security on the host device for the tests we intended to run.
     - Lesson - always, ALWAYS read the docs of any unfamiliar technology.
-
-# Submission:
-
-Full commented code and the code is clean, formatted.
-
-The README file in the GitHub repository indicates clearly how to easily clone and build/deploy the code. The README file in the GitHub repository clearly indicates what functionality does (and does not, if applicable) work in the final version of the application. Additionally, it should include references to two scholarly papers: one representing prior research, serving as the foundational bedrock for the current study, and another representing contemporary work that acknowledges and builds upon the findings of the current paper. This practice is akin to the methodology of an archeologist, meticulously documenting the lineage of ideas and advancements within the academic landscape.
-
-Any data required to test/demo the application has been provided within the project. Instructors can run the code and reproduce the results shown in the class.
+2. Inconsistant outputs
+    - The computer use application loop introduces several opportunities for hillucinations which makes getting the desired output out of the LLM incredibly difficult, regardless if the intent is malicous or not.
