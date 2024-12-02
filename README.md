@@ -85,6 +85,17 @@ Each README provides comprehensive information about the specific vulnerabilitie
   }
   ```
   ## Contemporary Paper Citation
-
+```bibtex
+  @misc{bai2022constitutional,
+  doi = {10.48550/ARXIV.2212.08073},
+  url = {https://arxiv.org/abs/2212.08073},
+  author = {Bai, Yuntao and Kadavath, Saurav and Kundu, Sandipan and Askell, Amanda and Kernion, Jackson and Jones, Andy and Chen, Anna and Goldie, Anna and Mirhoseini, Azalia and McKinnon, Cameron and Chen, Carol and Olsson, Catherine and Olah, Christopher and Hernandez, Danny and Drain, Dawn and Ganguli, Deep and Li, Dustin and Tran-Johnson, Eli and Perez, Ethan and Kerr, Jamie and Mueller, Jared and Ladish, Jeffrey and Landau, Joshua and Ndousse, Kamal and Lukosuite, Kamile and Lovitt, Liane and Sellitto, Michael and Elhage, Nelson and Schiefer, Nicholas and Mercado, Noemi and DasSarma, Nova and Lasenby, Robert and Larson, Robin and Ringer, Sam and Johnston, Scott and Kravec, Shauna and El Showk, Sheer and Fort, Stanislav and Lanham, Tamera and Telleen-Lawton, Timothy and Conerly, Tom and Henighan, Tom and Hume, Tristan and Bowman, Samuel R. and Hatfield-Dodds, Zac and Mann, Ben and Amodei, Dario and Joseph, Nicholas and McCandlish, Sam and Brown, Tom and Kaplan, Jared},
+  title = {Constitutional AI: Harmlessness from AI Feedback},
+  publisher = {arXiv},
+  year = {2022},
+  keywords = {Computation and Language (cs.CL), Artificial Intelligence (cs.AI)},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+```
 
 
