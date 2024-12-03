@@ -84,6 +84,9 @@ Each README provides comprehensive information about the specific vulnerabilitie
   copyright = {arXiv.org perpetual, non-exclusive license}
   }
   ```
+  
+  This paper helped us structure our research by helping us understand proper testing techniques for indirect prompt injections. Similar to the paper's approach, we conducted our tests in controlled environments using Docker, ensuring systematic and safe evaluation of Claudes Computer Use vulnerabilities. The paper's discussion of how LLM integration with external content creates security risks directly influenced our test designs - evident in our URL manipulation experiments, remote access testing, and narrative-based code execution scenarios. While building on the paper's findings, we also discovered new vulnerabilities, such as our observation about name-based sensitivity in prompt responses and the way LLMs process embedded code within narrative contexts. Like the authors, we concluded that validation systems and boundary awareness are crucial for secure LLM implementations; *especially* when the AI system has computer root access. 
+  
   ## Contemporary Paper Citation
 ```bibtex
   @misc{bai2022constitutional,
